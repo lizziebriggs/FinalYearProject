@@ -10,7 +10,7 @@ namespace Systems
         {
             float dt = Time.DeltaTime;
             
-            Entities.ForEach((ref Movable move, ref Translation trans, ref Rotation rot) =>
+            Entities.ForEach((ref Movable move, ref Translation trans) =>
             {
                 trans.Value += move.speed * move.direction * dt;
             }).Schedule();
