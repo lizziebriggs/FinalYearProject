@@ -4,7 +4,6 @@ using UnityEngine;
 
 namespace Authoring
 {
-    [RequiresEntityConversion]
     [AddComponentMenu("Custom Authoring/Leader Authoring")]
     public class LeaderAuthoring : MonoBehaviour, IConvertGameObjectToEntity
     {
