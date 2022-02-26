@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Numerics;
 using UnityEngine;
 using Vector3 = UnityEngine.Vector3;
 
@@ -25,7 +24,9 @@ namespace Enemies
 
         private void FixedUpdate()
         {
-            bool hitWall = Physics.Raycast(transform.position, dir, out RaycastHit _, 3f);
+            // Set layer mask so raycast ignores everything BUT walls
+            int layerMask = 1 << 6;
+            bool hitWall = Physics.Raycast(transform.position, dir, out RaycastHit _, 3f, layerMask);
             
             if (hitWall)
             {
@@ -51,7 +52,8 @@ namespace Enemies
 
         private bool CheckRay(Vector3 dirToCheck)
         {
-            return dirToCheck == -dir || Physics.Raycast(transform.position, dirToCheck, out RaycastHit _, 3f);
+            return dirToCheck == -dir
+                   || Physics.Raycast(transform.position, dirToCheck, out RaycastHit _, 3f);
         }
     }
 }
