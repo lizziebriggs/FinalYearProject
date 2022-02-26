@@ -26,11 +26,11 @@ namespace Enemies
         private void FixedUpdate()
         {
             bool hitWall = Physics.Raycast(transform.position, dir, out RaycastHit _, 3f);
-
+            
             if (hitWall)
             {
                 var validDir = new List<Vector3>();
-            
+                
                 if(!CheckRay(Vector3.back))
                     validDir.Add(Vector3.back);
                 if(!CheckRay(Vector3.forward))
@@ -39,10 +39,13 @@ namespace Enemies
                     validDir.Add(Vector3.left);
                 if(!CheckRay(Vector3.right))
                     validDir.Add(Vector3.right);
-
-                dir = validDir[Random.Range(0, validDir.Count)];
+                
+                if (validDir.Count == 0)
+                    dir = -dir;
+                else
+                    dir = validDir[Random.Range(0, validDir.Count)];
             }
-            
+
             rb.MovePosition(transform.position + Time.deltaTime * speed * dir);
         }
 

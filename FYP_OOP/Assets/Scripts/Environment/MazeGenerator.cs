@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -6,19 +5,28 @@ namespace Environment
 {
     public class MazeGenerator : MonoBehaviour
     {
+        [SerializeField] private GameManager gameManager;
+        
         [Header("Settings")]
         [SerializeField] private int width;
         [SerializeField] private int length;
         [SerializeField] private float pathWidth;
         [SerializeField] private float pathHeight;
+        [SerializeField] private GameObject floor;
+        [SerializeField] private GameObject wall;
 
-        public int[,] MazeData { get; set; }
+        private int[,] mazeData;
 
-        public float PathWidth => pathWidth;
-        public float PathHeight => pathHeight;
+        private void Start()
+        {
+            mazeData = GenerateMazeData();
+            GenerateMazeObject();
+            
+            SetStartPos(); SetGoalPos();
+            gameManager.StartGame();
+        }
 
-
-        public int[,] GenerateMazeData()
+        private int[,] GenerateMazeData()
         {
             int[,] newMaze = new int[width, length];
 
@@ -49,141 +57,98 @@ namespace Environment
             return newMaze;
         }
 
-
-        public Mesh GenerateMazeMesh()
+        private void GenerateMazeObject()
         {
-            Mesh newMaze = new Mesh();
-            
-            List<Vector3> newVerts = new List<Vector3>();
-            List<Vector2> newUVs = new List<Vector2>();
-
-            newMaze.subMeshCount = 2;
-            List<int> floorTriangles = new List<int>();
-            List<int> wallTriangles = new List<int>();
-
-            int wMax = MazeData.GetUpperBound(0);
-            int lMax = MazeData.GetUpperBound(1);
+            int wMax = mazeData.GetUpperBound(0);
+            int lMax = mazeData.GetUpperBound(1);
             float halfH = pathHeight * .5f;
+
+            GameObject mazeObj = new GameObject();
+            mazeObj.transform.position = Vector3.zero;
+            mazeObj.name = "Maze";
+            
+            for (int i = 0; i <= wMax; i++)
+            {
+                for (int j = 0; j <= lMax; j++)
+                {
+                    if (mazeData[i, j] == 1) continue;
+
+                    Instantiate(floor,
+                        new Vector3(j * pathWidth, 0, i * pathWidth), 
+                        Quaternion.Euler(90, 0, 0))
+                        .transform.parent = mazeObj.transform;
+                    
+                    // Face forward
+                    if (i - 1 < 0 || mazeData[i-1, j] == 1)
+                        Instantiate(wall,
+                            new Vector3(j * pathWidth, halfH, (i-.5f) * pathWidth),
+                            Quaternion.Euler(0, 180, 0))
+                            .transform.parent = mazeObj.transform;
+
+                    // Face left
+                    if (j + 1 > lMax || mazeData[i, j+1] == 1)
+                        Instantiate(wall,
+                            new Vector3((j+.5f) * pathWidth, halfH, i * pathWidth),
+                            Quaternion.Euler(0, 90, 0))
+                            .transform.parent = mazeObj.transform;
+
+                    // Face right
+                    if (j - 1 < 0 || mazeData[i, j-1] == 1)
+                        Instantiate(wall,
+                            new Vector3((j-.5f) * pathWidth, halfH, i * pathWidth),
+                            Quaternion.Euler(0, 270, 0))
+                            .transform.parent = mazeObj.transform;
+
+                    // Face back
+                    if (i + 1 > wMax || mazeData[i+1, j] == 1)
+                        Instantiate(wall,
+                            new Vector3(j * pathWidth, halfH, (i+.5f) * pathWidth),
+                            Quaternion.Euler(0, 0, 0))
+                            .transform.parent = mazeObj.transform;
+                }
+            }
+        }
+
+        private void SetStartPos()
+        {
+            int[,] maze = mazeData;
+
+            int wMax = maze.GetUpperBound(0);
+            int lMax = maze.GetUpperBound(1);
 
             for (int i = 0; i <= wMax; i++)
             {
                 for (int j = 0; j <= lMax; j++)
                 {
-                    if (MazeData[i, j] == 1) continue;
-                    
-                    // Create floors
-                    CreateQuad(Matrix4x4.TRS(
-                        new Vector3(j * pathWidth, 0, i *pathWidth),
-                        Quaternion.LookRotation(Vector3.up),
-                        new Vector3(pathWidth, pathWidth, 1)
-                    ), ref newVerts, ref newUVs, ref floorTriangles );
-                        
-                    // Create ceiling
-                    // CreateQuad(Matrix4x4.TRS(
-                    //     new Vector3(j * pathWidth, pathHeight, i * pathWidth),
-                    //     Quaternion.LookRotation(Vector3.down),
-                    //     new Vector3(pathWidth, pathWidth, 1)
-                    // ), ref newVerts, ref newUVs, ref floorTriangles);
+                    // Use first empty space as start pos
+                    if (maze[i, j] != 0) continue;
 
-                    if (i - 1 < 0 || MazeData[i-1, j] == 1)
-                    {
-                        CreateQuad(Matrix4x4.TRS(
-                            new Vector3(j * pathWidth, halfH, (i-.5f) * pathWidth),
-                            Quaternion.LookRotation(Vector3.forward),
-                            new Vector3(pathWidth, pathHeight, 1)
-                        ), ref newVerts, ref newUVs, ref wallTriangles);
-                    }
-
-                    if (j + 1 > lMax || MazeData[i, j+1] == 1)
-                    {
-                        CreateQuad(Matrix4x4.TRS(
-                            new Vector3((j+.5f) * pathWidth, halfH, i * pathWidth),
-                            Quaternion.LookRotation(Vector3.left),
-                            new Vector3(pathWidth, pathHeight, 1)
-                        ), ref newVerts, ref newUVs, ref wallTriangles);
-                    }
-
-                    if (j - 1 < 0 || MazeData[i, j-1] == 1)
-                    {
-                        CreateQuad(Matrix4x4.TRS(
-                            new Vector3((j-.5f) * pathWidth, halfH, i * pathWidth),
-                            Quaternion.LookRotation(Vector3.right),
-                            new Vector3(pathWidth, pathHeight, 1)
-                        ), ref newVerts, ref newUVs, ref wallTriangles);
-                    }
-
-                    if (i + 1 > wMax || MazeData[i+1, j] == 1)
-                    {
-                        CreateQuad(Matrix4x4.TRS(
-                            new Vector3(j * pathWidth, halfH, (i+.5f) * pathWidth),
-                            Quaternion.LookRotation(Vector3.back),
-                            new Vector3(pathWidth, pathHeight, 1)
-                        ), ref newVerts, ref newUVs, ref wallTriangles);
-                    }
+                    gameManager.StartX = i * pathWidth;
+                    gameManager.StartZ = j * pathWidth;
+                    return;
                 }
             }
-
-            newMaze.vertices = newVerts.ToArray();
-            newMaze.uv = newUVs.ToArray();
-    
-            newMaze.SetTriangles(floorTriangles.ToArray(), 0);
-            newMaze.SetTriangles(wallTriangles.ToArray(), 1);
-
-            newMaze.RecalculateNormals();
-
-            return newMaze;
         }
 
-
-        private static void CreateQuad(Matrix4x4 matrix, ref List<Vector3> newVerts, ref List<Vector2> newUVs,
-            ref List<int> newTriangles)
+        private void SetGoalPos()
         {
-            int index = newVerts.Count;
-            
-            Vector3 vert1 = new Vector3(-.5f, -.5f, 0);
-            Vector3 vert2 = new Vector3(-.5f, .5f, 0);
-            Vector3 vert3 = new Vector3(.5f, .5f, 0);
-            Vector3 vert4 = new Vector3(.5f, -.5f, 0);
-            
-            newVerts.Add(matrix.MultiplyPoint3x4(vert1));
-            newVerts.Add(matrix.MultiplyPoint3x4(vert2));
-            newVerts.Add(matrix.MultiplyPoint3x4(vert3));
-            newVerts.Add(matrix.MultiplyPoint3x4(vert4));
-            
-            newUVs.Add(new Vector2(1, 0));
-            newUVs.Add(new Vector2(1, 1));
-            newUVs.Add(new Vector2(0, 1));
-            newUVs.Add(new Vector2(0, 0));
-            
-            newTriangles.Add(index+2);
-            newTriangles.Add(index+1);
-            newTriangles.Add(index);
-            
-            newTriangles.Add(index+3);
-            newTriangles.Add(index+2);
-            newTriangles.Add(index);
+            int[,] maze = mazeData;
+
+            int wMax = maze.GetUpperBound(0);
+            int lMax = maze.GetUpperBound(1);
+
+            for (int i = wMax; i >= 0; i--)
+            {
+                for (int j = lMax; j >= 0; j--)
+                {
+                    // Use last empty space as end pos
+                    if (maze[i, j] != 0) continue;
+                    
+                    gameManager.GoalX = i * pathWidth;
+                    gameManager.GoalZ = j * pathWidth;
+                    return;
+                }
+            }
         }
-        
-        
-        // private void OnGUI()
-        // {
-        //     int[,] mazeToDraw = this.mazeData;
-        //     int rMax = mazeToDraw.GetUpperBound(0);
-        //     int cMax = mazeToDraw.GetUpperBound(1);
-        //
-        //     string msg = "";
-        //
-        //     for (int i = rMax; i >= 0; i--)
-        //     {
-        //         for (int j = 0; j <= cMax; j++)
-        //         {
-        //             if (mazeToDraw[i, j] == 0) msg += "....";
-        //             else msg += "==";
-        //         }
-        //         msg += "\n";
-        //     }
-        //
-        //     GUI.Label(new Rect(20, 20, 500, 500), msg);
-        // }
     }
 }
