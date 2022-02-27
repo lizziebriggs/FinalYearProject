@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Player;
 using UnityEngine;
 using Vector3 = UnityEngine.Vector3;
 
@@ -8,7 +9,7 @@ namespace Enemies
     public class EnemyBase : MonoBehaviour
     {
         [Header("Info")]
-        [SerializeField] protected Color colour;
+        [SerializeField] private float damage;
 
         [Header("Movement")]
         [SerializeField] protected Rigidbody rb;
@@ -54,6 +55,17 @@ namespace Enemies
         {
             return dirToCheck == -dir
                    || Physics.Raycast(transform.position, dirToCheck, out RaycastHit _, 3f);
+        }
+
+        private void OnCollisionEnter(Collision other)
+        {
+            var player = other.gameObject.GetComponent<PlayerController>();
+
+            if (player && !player.IsImmune)
+            {
+                player.Health -= damage;
+                dir = -dir;
+            }
         }
     }
 }

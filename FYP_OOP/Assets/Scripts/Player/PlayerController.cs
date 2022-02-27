@@ -16,17 +16,32 @@ namespace Player
             get => speed;
             set => speed = value;
         }
+        
+        [Header("Info")]
+        [SerializeField] private float maxHealth;
+        private float health;
 
-        private bool isImmune;
-        public bool IsImmune
+        public float Health
         {
-            get => isImmune;
-            set => isImmune = value;
+            get => health;
+            set => health = value;
         }
+
+        public bool IsImmune { get; set; }
 
         private void Start()
         {
             if (!rb) rb = GetComponent<Rigidbody>();
+
+            health = maxHealth;
+        }
+
+        private void Update()
+        {
+            if (health <= 0)
+            {
+                // End game
+            }
         }
 
         private void FixedUpdate()
