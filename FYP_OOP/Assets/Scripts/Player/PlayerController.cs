@@ -11,6 +11,19 @@ namespace Player
         private Vector3 dirToMove;
         private Vector3 dir;
 
+        public float Speed
+        {
+            get => speed;
+            set => speed = value;
+        }
+
+        private bool isImmune;
+        public bool IsImmune
+        {
+            get => isImmune;
+            set => isImmune = value;
+        }
+
         private void Start()
         {
             if (!rb) rb = GetComponent<Rigidbody>();
@@ -20,7 +33,6 @@ namespace Player
         {
             var trans = rb.transform;
             
-            //trans.Rotate(0, Input.GetAxis("Horizontal") * speed, 0);
             dirToMove.x = Input.GetAxis("Horizontal");
             dirToMove.z = Input.GetAxis("Vertical");
             dir = (trans.right * dirToMove.x) + (trans.forward * dirToMove.z);
