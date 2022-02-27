@@ -65,35 +65,38 @@ namespace Systems
                     }
                 }
             }
-            
-            // // Set start position
-            // for (int i = 0; i <= wMax; i++)
-            // {
-            //     for (int j = 0; j <= lMax; j++)
-            //     {
-            //         // Use first empty space as start pos
-            //         if (mazeData[i, j] != 0) continue;
-            //
-            //         maze.startX = i * pathWidth;
-            //         maze.startY = j * pathWidth;
-            //         return;
-            //     }
-            // }
-            //
-            // // Set end position
-            // for (int i = wMax; i >= 0; i--)
-            // {
-            //     for (int j = lMax; j >= 0; j--)
-            //     {
-            //         // Use first empty space as start pos
-            //         if (mazeData[i, j] != 0) continue;
-            //
-            //         maze.endX = i * pathWidth;
-            //         maze.endY = j * pathWidth;
-            //         return;
-            //     }
-            // }
 
+            Entities.ForEach((ref Maze mazeComp) =>
+            {
+                // Set start position
+                for (int i = 0; i <= wMax; i++)
+                {
+                    for (int j = 0; j <= lMax; j++)
+                    {
+                        // Use first empty space as start pos
+                        if (mazeData[i, j] != 0) continue;
+            
+                        mazeComp.startX = i * pathWidth;
+                        mazeComp.startY = j * pathWidth;
+                        return;
+                    }
+                }
+            
+                // Set end position
+                for (int i = wMax; i >= 0; i--)
+                {
+                    for (int j = lMax; j >= 0; j--)
+                    {
+                        // Use first empty space as start pos
+                        if (mazeData[i, j] != 0) continue;
+            
+                        mazeComp.endX = i * pathWidth;
+                        mazeComp.endY = j * pathWidth;
+                        return;
+                    }
+                }
+            }).WithoutBurst().Run();
+            
             Enabled = false;
         }
 

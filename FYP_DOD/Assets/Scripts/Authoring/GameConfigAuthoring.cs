@@ -8,13 +8,13 @@ namespace Authoring
     public class GameConfigAuthoring : MonoBehaviour, IConvertGameObjectToEntity, IDeclareReferencedPrefabs
     {
         [Header("Enemies")]
-        public int numOfEnemies;
+        public int enemyFrequency;
         
         public void Convert(Entity entity, EntityManager dstManager, GameObjectConversionSystem conversionSystem)
         {
             var gameConfig = new GameConfig()
             {
-                numOfEnemies = numOfEnemies
+                enemyFrequency = enemyFrequency
             };
         }
 
