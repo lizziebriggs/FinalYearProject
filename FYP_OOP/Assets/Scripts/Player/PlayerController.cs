@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace Player
@@ -52,6 +53,11 @@ namespace Player
             dirToMove.z = Input.GetAxis("Vertical");
             dir = (trans.right * dirToMove.x) + (trans.forward * dirToMove.z);
             rb.MovePosition(trans.position + Time.deltaTime * speed * dir);
+        }
+
+        private void OnGUI()
+        {
+            GUI.Box(new Rect(10, 10, 100, 30), "Health: " + health);
         }
     }
 }
