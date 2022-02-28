@@ -26,10 +26,8 @@ namespace Systems
             {
                 bool hitWall = raycaster.CheckRay(trans.Value, mov.direction, mov.direction);
 
-                if (math.distance(trans.Value, enemy.prevTile) > 3f || hitWall)
+                if (hitWall)
                 {
-                    enemy.prevTile = math.round(trans.Value);
-                    
                     var validDir = new NativeList<float3>(Allocator.Temp);
                     
                     if (!raycaster.CheckRay(trans.Value, new float3(0, 0, -1), mov.direction))
@@ -41,13 +39,10 @@ namespace Systems
                     if (!raycaster.CheckRay(trans.Value, new float3(1, 0, 0), mov.direction))
                         validDir.Add(new float3(1, 0, 0));
 
-                    // // If the enemy reaches a dead end, make them move the other way
-                    // if (validDir.Length == 0)
-                    //     mov.direction = -mov.direction;
-                    // else
-                    //     mov.direction = validDir[rngTemp.NextInt(validDir.Length)];
-                    
-                    mov.direction = validDir[rngTemp.NextInt(validDir.Length)];
+                    if (validDir.Length == 0)
+                        mov.direction = -mov.direction;
+                    else
+                        mov.direction = validDir[rngTemp.NextInt(validDir.Length)];
                     
                     validDir.Dispose();
                 }

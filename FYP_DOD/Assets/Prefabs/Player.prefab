@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 1218730670763922202}
   - component: {fileID: 1218730670763922195}
   - component: {fileID: 1218730670763922193}
+  - component: {fileID: 5857860526719980354}
   - component: {fileID: 1218730670763922199}
   m_Layer: 0
   m_Name: Player
@@ -137,7 +138,7 @@ MonoBehaviour:
     m_Template: {fileID: 0}
     m_CollisionResponse:
       m_Override: 0
-      m_Value: 0
+      m_Value: 1
     m_Friction:
       m_Override: 0
       m_Value:
@@ -322,7 +323,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35360407f92e3154ca1b6061e4651fc6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 0
+  health: 100
 --- !u!114 &1218730670763922193
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -336,6 +337,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   followEntity: {fileID: 0}
+--- !u!114 &5857860526719980354
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1218730670763922201}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a9288366b899a1498f05952c53922e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1218730670763922199
 MonoBehaviour:
   m_ObjectHideFlags: 0

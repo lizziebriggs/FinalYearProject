@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 1244318201344351263}
   - component: {fileID: 1244318201344351260}
   - component: {fileID: 1244318201344351261}
+  - component: {fileID: 3477526018871603443}
   - component: {fileID: 1244318201344351238}
   m_Layer: 0
   m_Name: Enemy
@@ -136,7 +137,7 @@ MonoBehaviour:
     m_Template: {fileID: 0}
     m_CollisionResponse:
       m_Override: 0
-      m_Value: 0
+      m_Value: 1
     m_Friction:
       m_Override: 0
       m_Value:
@@ -242,10 +243,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6afab89d92143764788a6915ae612210, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prevTile:
-    x: 0
-    y: 0
-    z: 0
 --- !u!114 &1244318201344351263
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -258,7 +255,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b0710b3960ebfd489214737e16265c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 4
+  speed: 3
   direction:
     x: 0
     y: 0
@@ -275,7 +272,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35360407f92e3154ca1b6061e4651fc6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 0
+  health: 50
 --- !u!114 &1244318201344351261
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -288,7 +285,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 546b149835202e7498c42279bffdf1d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 0
+  damage: 10
+--- !u!114 &3477526018871603443
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1244318201344351239}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a9288366b899a1498f05952c53922e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1244318201344351238
 MonoBehaviour:
   m_ObjectHideFlags: 0
