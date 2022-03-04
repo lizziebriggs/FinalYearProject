@@ -6,5 +6,7 @@ namespace Components
     public struct Health : IComponentData
     {
         public int health;
+        public float hitDelay;
+        public bool isImmune;
     }
 }

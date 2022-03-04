@@ -1,4 +1,5 @@
 using Components;
+using Components.Pickups;
 using Unity.Entities;
 using Unity.Mathematics;
 using Unity.Transforms;
@@ -10,13 +11,49 @@ namespace Systems
     {
         protected override void OnUpdate()
         {
+            var ecb = World.GetOrCreateSystem<EndSimulationEntityCommandBufferSystem>().CreateCommandBuffer();
+
+            var dt = Time.DeltaTime;
+            
             var x = Input.GetAxis("Horizontal");
             var z = Input.GetAxis("Vertical");
 
-            Entities.ForEach((ref Movable move, ref Translation trans, in Rotation rot, in Player player) =>
+            Entities
+                . WithAll<Player>()
+                .ForEach((ref Movable move, ref Translation trans, in Rotation rot) =>
             {
                 move.direction = new float3(x, 0, z);
             }).Schedule();
+
+            
+            // If player has pick up speed boost, tick down timer for boost
+            Entities
+                .WithAll<Player>()
+                .ForEach((Entity player, ref SpeedPickup speedPickup, ref Movable mov) =>
+                {
+                    speedPickup.duration -= dt;
+
+                    if (speedPickup.duration <= 0)
+                    {
+                        mov.speed /= speedPickup.speedMultiplier;
+                        ecb.RemoveComponent<SpeedPickup>(player);
+                    }
+                }).WithoutBurst().Run();
+
+            
+            // If player has pick up immunity, tick down timer for immunity
+            Entities
+                .WithAll<Player>()
+                .ForEach((Entity player, ref ImmunityPickup immunityPickup, ref Health health) =>
+                {
+                    immunityPickup.duration -= dt;
+
+                    if (immunityPickup.duration <= 0)
+                    {
+                        health.isImmune = false;
+                        ecb.RemoveComponent<ImmunityPickup>(player);
+                    }
+                }).WithoutBurst().Run();
         }
     }
 }

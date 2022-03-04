@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 3398768985063939216}
   - component: {fileID: 3398768985063939231}
   - component: {fileID: 4212565028267687720}
-  - component: {fileID: 3398768985063939229}
   - component: {fileID: 2717185325036905450}
+  - component: {fileID: 3398768985063939229}
   m_Layer: 0
   m_Name: FloorQuad
   m_TagString: Untagged
@@ -227,6 +227,18 @@ MonoBehaviour:
         Tag07: 0
     m_SerializedVersion: 1
   m_SerializedVersion: 1
+--- !u!114 &2717185325036905450
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3398768985063939228}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a9288366b899a1498f05952c53922e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &3398768985063939229
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -240,15 +252,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ConversionMode: 0
---- !u!114 &2717185325036905450
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3398768985063939228}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a9288366b899a1498f05952c53922e4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

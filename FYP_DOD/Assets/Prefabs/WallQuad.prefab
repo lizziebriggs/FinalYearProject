@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4789796082910873856}
   - component: {fileID: 4789796082910873859}
   - component: {fileID: 5452159812627901074}
+  - component: {fileID: 8969109742289829286}
   - component: {fileID: 4789796082910873869}
   m_Layer: 0
   m_Name: WallQuad
@@ -226,6 +227,18 @@ MonoBehaviour:
         Tag07: 0
     m_SerializedVersion: 1
   m_SerializedVersion: 1
+--- !u!114 &8969109742289829286
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4789796082910873868}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a9288366b899a1498f05952c53922e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &4789796082910873869
 MonoBehaviour:
   m_ObjectHideFlags: 0
