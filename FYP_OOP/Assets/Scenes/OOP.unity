@@ -446,6 +446,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 2881795834920351731, guid: e2d328096d033c84088738d09c3443f6, type: 3}
+      propertyPath: bullet
+      value: 
+      objectReference: {fileID: 4932551648066692466, guid: 4100ef1cea5b46043afc447d4fa52d53, type: 3}
+    - target: {fileID: 2881795834920351731, guid: e2d328096d033c84088738d09c3443f6, type: 3}
+      propertyPath: fireRate
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2881795834920351731, guid: e2d328096d033c84088738d09c3443f6, type: 3}
+      propertyPath: poolSize
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 2881795834920351736, guid: e2d328096d033c84088738d09c3443f6, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -502,6 +514,10 @@ PrefabInstance:
     - target: {fileID: 7710345223482933289, guid: 848a38d26d3ea1345801a8abef5ea245, type: 3}
       propertyPath: m_Name
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 7710345223482933289, guid: 848a38d26d3ea1345801a8abef5ea245, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7710345223482933715, guid: 848a38d26d3ea1345801a8abef5ea245, type: 3}
       propertyPath: m_RootOrder
