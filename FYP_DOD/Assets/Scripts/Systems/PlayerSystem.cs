@@ -19,13 +19,27 @@ namespace Systems
             var z = Input.GetAxis("Vertical");
 
             Entities
-                . WithAll<Player>()
+                .WithAll<Player>()
                 .ForEach((ref Movable move, ref Translation trans, in Rotation rot) =>
             {
                 move.direction = new float3(x, 0, z);
             }).Schedule();
 
-            
+            var fire = Input.GetMouseButtonDown(0);
+
+            Entities.ForEach((ref Player player, in Translation trans, in Rotation rot) =>
+            {
+                if (fire && player.fireTimer >= player.fireRate)
+                {
+                    Entity newBullet = EntityManager.Instantiate(player.bullet);
+                    EntityManager.SetComponentData(newBullet, trans);
+                    EntityManager.SetComponentData(newBullet, rot);
+                    player.fireTimer = 0;
+                }
+                else player.fireTimer += dt;
+            }).WithStructuralChanges().Run();
+
+
             // If player has pick up speed boost, tick down timer for boost
             Entities
                 .WithAll<Player>()
