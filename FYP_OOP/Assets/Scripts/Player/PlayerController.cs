@@ -21,8 +21,6 @@ namespace Player
         [Header("Movement")]
         [SerializeField] private Rigidbody rb;
         [SerializeField] private float speed;
-        private Vector3 dirToMove;
-        private Vector3 dir;
 
         public float Speed
         {
@@ -57,7 +55,7 @@ namespace Player
 
         private void OnGUI()
         {
-            GUI.Box(new Rect(10, 10, 100, 30), "Health: " + health);
+            GUI.Box(new Rect(10, 10, 100, 25), "Health: " + health);
         }
 
         private void Update()
@@ -80,17 +78,21 @@ namespace Player
 
         private void FixedUpdate()
         {
-            var trans = rb.transform;
+            float xMove = Input.GetAxis("Horizontal");
+            float zMove = Input.GetAxis("Vertical");
             
-            dirToMove.x = Input.GetAxis("Horizontal");
-            dirToMove.z = Input.GetAxis("Vertical");
-            dir = (trans.right * dirToMove.x) + (trans.forward * dirToMove.z);
-            rb.MovePosition(trans.position + Time.deltaTime * speed * dir);
+            Vector3 movement = new Vector3(xMove, 0, zMove);
+            movement.Normalize();
+            
+            transform.Translate(movement * (speed * Time.deltaTime), Space.World);
+            if (movement != Vector3.zero)
+                transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(movement), 0.15F);
         }
 
         private void Fire()
         {
             bulletPool[nextBullet].transform.position = transform.position;
+            bulletPool[nextBullet].transform.rotation = transform.rotation;
             bulletPool[nextBullet].SetActive(true);
 
             nextBullet = nextBullet + 1 == poolSize ? 0 : ++nextBullet;
