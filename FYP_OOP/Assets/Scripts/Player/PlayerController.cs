@@ -69,7 +69,7 @@ namespace Player
 
             if (fireTimer >= fireRate)
             {
-                if (Input.GetMouseButton(1))
+                if (Input.GetMouseButton(0))
                 {
                     Fire();
                     fireTimer = 0;

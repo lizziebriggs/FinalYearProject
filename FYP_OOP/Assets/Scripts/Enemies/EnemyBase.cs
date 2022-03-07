@@ -1,6 +1,9 @@
+using System;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using Player;
 using UnityEngine;
+using Random = UnityEngine.Random;
 using Vector3 = UnityEngine.Vector3;
 
 namespace Enemies
@@ -9,7 +12,14 @@ namespace Enemies
     public class EnemyBase : MonoBehaviour
     {
         [Header("Info")]
+        [SerializeField] private float health;
         [SerializeField] private float damage;
+        
+        public float Health
+        {
+            get => health;
+            set => health = value;
+        }
 
         [Header("Movement")]
         [SerializeField] protected Rigidbody rb;
@@ -21,6 +31,12 @@ namespace Enemies
             if (!rb) rb = GetComponent<Rigidbody>();
             
             dir = Vector3.forward;
+        }
+
+        private void Update()
+        {
+            if (health <= 0)
+                Destroy(gameObject);
         }
 
         private void FixedUpdate()
