@@ -328,7 +328,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
-  hitDelay: 1
+  damageDelay: 2
+  damageTimer: 0
   isImmune: 0
 --- !u!114 &1218730670763922193
 MonoBehaviour:

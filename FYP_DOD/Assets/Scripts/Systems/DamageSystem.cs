@@ -12,9 +12,10 @@ namespace Systems
             Entities.ForEach((DynamicBuffer<CollisionBuffer> collision, ref Health health) => {
                 for (int i = 0; i < collision.Length; i++)
                 {
-                    if (!health.isImmune && HasComponent<Damage>(collision[i].entity))
+                    if (health.damageTimer <= 0 && !health.isImmune && HasComponent<Damage>(collision[i].entity))
                     {
                         health.health -= GetComponent<Damage>(collision[i].entity).damage;
+                        health.damageTimer = health.damageDelay;
                     }
                 }
             }).Schedule();
@@ -22,9 +23,10 @@ namespace Systems
             Entities.ForEach((DynamicBuffer<TriggerBuffer> trigger, ref Health health) => {
                 for (int i = 0; i < trigger.Length; i++)
                 {
-                    if (!health.isImmune && HasComponent<Damage>(trigger[i].entity))
+                    if (health.damageTimer <= 0 && !health.isImmune && HasComponent<Damage>(trigger[i].entity))
                     {
                         health.health -= GetComponent<Damage>(trigger[i].entity).damage;
+                        health.damageTimer = health.damageDelay;
                     }
                 }
             }).Schedule();
