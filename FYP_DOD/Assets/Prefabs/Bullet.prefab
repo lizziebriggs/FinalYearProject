@@ -11,10 +11,11 @@ GameObject:
   - component: {fileID: 1610251443237720366}
   - component: {fileID: 4537289029137322971}
   - component: {fileID: 5264824681284384202}
-  - component: {fileID: 3681012646764876167}
+  - component: {fileID: 7892295096596235186}
   - component: {fileID: 1900472064654882722}
   - component: {fileID: 3078116445997239922}
   - component: {fileID: 4099706468099184214}
+  - component: {fileID: 4823255990791450384}
   - component: {fileID: 6131879456486448303}
   m_Layer: 0
   m_Name: Bullet
@@ -86,7 +87,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &3681012646764876167
+--- !u!114 &7892295096596235186
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -273,6 +274,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 50
+--- !u!114 &4823255990791450384
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3282368131753745893}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a9288366b899a1498f05952c53922e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &6131879456486448303
 MonoBehaviour:
   m_ObjectHideFlags: 0

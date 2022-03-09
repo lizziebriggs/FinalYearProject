@@ -12,21 +12,20 @@ namespace Systems
             Entities.ForEach((DynamicBuffer<CollisionBuffer> collision, ref Health health) => {
                 for (int i = 0; i < collision.Length; i++)
                 {
-                    if (health.hitDelay <= 0 && !health.isImmune && HasComponent<Damage>(collision[i].entity))
+                    if (!health.isImmune && HasComponent<Damage>(collision[i].entity))
                     {
                         health.health -= GetComponent<Damage>(collision[i].entity).damage;
                     }
                 }
             }).Schedule();
-
-            // Tick hit delay timer
-            Entities.ForEach((Entity e, ref Health health) =>
-            {
-                health.hitDelay -= dt;
-
-                if (health.health <= 0)
+            
+            Entities.ForEach((DynamicBuffer<TriggerBuffer> trigger, ref Health health) => {
+                for (int i = 0; i < trigger.Length; i++)
                 {
-                    // end game
+                    if (!health.isImmune && HasComponent<Damage>(trigger[i].entity))
+                    {
+                        health.health -= GetComponent<Damage>(trigger[i].entity).damage;
+                    }
                 }
             }).Schedule();
         }
