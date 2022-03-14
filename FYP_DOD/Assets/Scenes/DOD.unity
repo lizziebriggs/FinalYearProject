@@ -451,6 +451,6 @@ PrefabInstance:
     - target: {fileID: 7311966788449509347, guid: 7375aad081821bf42958917c56ea3305, type: 3}
       propertyPath: immunityPickupPrefab
       value: 
-      objectReference: {fileID: 1244318201344351239, guid: 3657f0f03030a1749b1427d36ffccaaf, type: 3}
+      objectReference: {fileID: 7722696489733667294, guid: d4c5c848648f0594299a0819b6194008, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7375aad081821bf42958917c56ea3305, type: 3}

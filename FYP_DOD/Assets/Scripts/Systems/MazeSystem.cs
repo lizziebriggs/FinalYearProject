@@ -45,7 +45,7 @@ namespace Systems
 
                     if (chance <= maze.pickupChance)
                     {
-                        int type = Random.Range(0, 1);
+                        int type = Random.Range(0, 2);
                         Entity pickup = EntityManager.Instantiate(
                             (type == 0 ? maze.speedPickupPrefab : maze.immunityPickupPrefab));
                         
