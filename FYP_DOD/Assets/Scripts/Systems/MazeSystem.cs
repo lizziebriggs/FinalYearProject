@@ -29,8 +29,29 @@ namespace Systems
                 {
                     if (mazeData[i, j] == 1) continue;
 
+                    float3 floorPos = new float3(j * pathWidth, 0, i * pathWidth);
+
                     Entity floor = EntityManager.Instantiate(maze.floorQuad);
-                    EntityManager.SetComponentData(floor, new Translation() {Value = new float3(j*pathWidth, 0, i*pathWidth)});
+                    EntityManager.SetComponentData(floor, new Translation() {Value = floorPos});
+
+                    float chance = Random.Range(0f, 1f);
+
+                    if (chance <= maze.enemyChance)
+                    {
+                        Entity enemy = EntityManager.Instantiate(maze.enemyPrefab);
+                        EntityManager.SetComponentData(enemy, 
+                            new Translation() {Value = new float3(floorPos.x, floorPos.y + 1f, floorPos.z)});
+                    }
+
+                    if (chance <= maze.pickupChance)
+                    {
+                        int type = Random.Range(0, 1);
+                        Entity pickup = EntityManager.Instantiate(
+                            (type == 0 ? maze.speedPickupPrefab : maze.immunityPickupPrefab));
+                        
+                        EntityManager.SetComponentData(pickup, 
+                            new Translation() {Value = new float3(floorPos.x, floorPos.y + 1f, floorPos.z)});
+                    }
                     
                     // Face forward
                     if (i - 1 < 0 || mazeData[i-1, j] == 1)

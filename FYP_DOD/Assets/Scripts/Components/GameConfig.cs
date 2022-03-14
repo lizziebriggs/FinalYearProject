@@ -1,9 +1,10 @@
 using Unity.Entities;
+using UnityEngine;
 
 namespace Components
 {
     public struct GameConfig : IComponentData
     {
-        public int enemyFrequency;
+        public Entity enemyPrefab;
     }
 }

@@ -2,25 +2,27 @@ using System.Collections.Generic;
 using Components;
 using Unity.Entities;
 using UnityEngine;
+using UnityGameObject = UnityEngine.GameObject;
 
 namespace Authoring
 {
     public class GameConfigAuthoring : MonoBehaviour, IConvertGameObjectToEntity, IDeclareReferencedPrefabs
     {
-        [Header("Enemies")]
-        public int enemyFrequency;
+        public UnityGameObject enemyPrefab;
+
+        public void DeclareReferencedPrefabs(List<GameObject> referencedPrefabs)
+        {
+            referencedPrefabs.Add(enemyPrefab);
+        }
         
         public void Convert(Entity entity, EntityManager dstManager, GameObjectConversionSystem conversionSystem)
         {
             var gameConfig = new GameConfig()
             {
-                enemyFrequency = enemyFrequency
+                enemyPrefab = conversionSystem.GetPrimaryEntity(enemyPrefab)
             };
-        }
 
-        public void DeclareReferencedPrefabs(List<GameObject> referencedPrefabs)
-        {
-            
+            dstManager.AddComponentData(entity, gameConfig);
         }
     }
 }
