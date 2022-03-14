@@ -3,6 +3,13 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private GameObject player;
+    
+    [Header("Prefabs")]
+    [SerializeField] private GameObject enemyPrefab;
+    [SerializeField] private GameObject[] pickupPrefabs;
+
+    public GameObject EnemyPrefab => enemyPrefab;
+    public GameObject[] PickupPrefabs => pickupPrefabs;
 
     private float startX;
     public float StartX { set => startX = value; }

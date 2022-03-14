@@ -1,5 +1,8 @@
 using UnityEngine;
+using UnityEngine.Assertions.Must;
+using Quaternion = UnityEngine.Quaternion;
 using Random = UnityEngine.Random;
+using Vector3 = UnityEngine.Vector3;
 
 namespace Environment
 {
@@ -14,6 +17,10 @@ namespace Environment
         [SerializeField] private float pathHeight;
         [SerializeField] private GameObject floor;
         [SerializeField] private GameObject wall;
+
+        [Header("Spawns")]
+        [SerializeField] [Range(0, 1)] private float enemyChance;
+        [SerializeField] [Range(0, 1)] private float pickupChance;
 
         private int[,] mazeData;
 
@@ -73,10 +80,13 @@ namespace Environment
                 {
                     if (mazeData[i, j] == 1) continue;
 
+                    Vector3 floorPos = new Vector3(j * pathWidth, 0, i * pathWidth);
+
                     Instantiate(floor,
-                        new Vector3(j * pathWidth, 0, i * pathWidth), 
-                        Quaternion.Euler(90, 0, 0))
+                        floorPos, Quaternion.Euler(90, 0, 0))
                         .transform.parent = mazeObj.transform;
+                    
+                    SpawnObject(new Vector3(floorPos.x, floorPos.y + 1f, floorPos.z));
                     
                     // Face forward
                     if (i - 1 < 0 || mazeData[i-1, j] == 1)
@@ -106,6 +116,22 @@ namespace Environment
                             Quaternion.Euler(0, 0, 0))
                             .transform.parent = mazeObj.transform;
                 }
+            }
+        }
+
+        private void SpawnObject(Vector3 pos)
+        {
+            float chance = Random.Range(0f, 1f);
+            
+            // Check to spawn enemy
+            if (chance <= enemyChance)
+                Instantiate(gameManager.EnemyPrefab, pos, Quaternion.identity);
+            
+            // Check to spawn pickup
+            if (chance <= pickupChance)
+            {
+                int pickup = Random.Range(0, gameManager.PickupPrefabs.Length);
+                Instantiate(gameManager.PickupPrefabs[pickup], pos, Quaternion.identity);
             }
         }
 
