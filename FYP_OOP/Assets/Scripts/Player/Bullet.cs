@@ -1,4 +1,5 @@
 using Enemies;
+using Environment;
 using UnityEngine;
 
 namespace Player
@@ -22,6 +23,9 @@ namespace Player
 
         private void OnCollisionEnter(Collision other)
         {
+            if (other.gameObject.CompareTag("Wall"))
+                gameObject.SetActive(false);
+            
             var enemy = other.gameObject.GetComponent<EnemyBase>();
 
             if (enemy)

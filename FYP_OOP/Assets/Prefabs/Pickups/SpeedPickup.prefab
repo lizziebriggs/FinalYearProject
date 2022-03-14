@@ -111,5 +111,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   meshRend: {fileID: 773888728361246364}
   col: {fileID: 773888728361246367}
-  speedMultiplier: 3
+  speedMultiplier: 1.5
   duration: 5

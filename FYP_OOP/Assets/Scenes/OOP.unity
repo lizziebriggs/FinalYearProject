@@ -332,7 +332,7 @@ MonoBehaviour:
   pathHeight: 5
   floor: {fileID: 5304571721866003724, guid: 9ed9b765f4b436d48abe918ef37f5f66, type: 3}
   wall: {fileID: 2473583228400954158, guid: 682a1596267b9934e8de45ed4ea01a80, type: 3}
-  enemyChance: 0.123
+  enemyChance: 0.13
   pickupChance: 0.155
 --- !u!4 &946272901
 Transform:
