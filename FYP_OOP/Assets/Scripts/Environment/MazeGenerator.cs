@@ -74,6 +74,14 @@ namespace Environment
             mazeObj.transform.position = Vector3.zero;
             mazeObj.name = "Maze";
             
+            GameObject enemiesObj = new GameObject();
+            enemiesObj.transform.position = Vector3.zero;
+            enemiesObj.name = "Enemies";
+            
+            GameObject pickupsObj = new GameObject();
+            pickupsObj.transform.position = Vector3.zero;
+            pickupsObj.name = "Pickups";
+            
             for (int i = 0; i <= wMax; i++)
             {
                 for (int j = 0; j <= lMax; j++)
@@ -86,7 +94,8 @@ namespace Environment
                         floorPos, Quaternion.Euler(90, 0, 0))
                         .transform.parent = mazeObj.transform;
                     
-                    SpawnObject(new Vector3(floorPos.x, floorPos.y + 1f, floorPos.z));
+                    SpawnObject(new Vector3(floorPos.x, floorPos.y + 1f, floorPos.z),
+                        enemiesObj, pickupsObj);
                     
                     // Face forward
                     if (i - 1 < 0 || mazeData[i-1, j] == 1)
@@ -119,19 +128,21 @@ namespace Environment
             }
         }
 
-        private void SpawnObject(Vector3 pos)
+        private void SpawnObject(Vector3 pos, GameObject enemyParent, GameObject pickupParent)
         {
             float chance = Random.Range(0f, 1f);
             
             // Check to spawn enemy
             if (chance <= enemyChance)
-                Instantiate(gameManager.EnemyPrefab, pos, Quaternion.identity);
+                Instantiate(gameManager.EnemyPrefab, pos, Quaternion.identity)
+                    .transform.parent = enemyParent.transform;
             
             // Check to spawn pickup
             if (chance <= pickupChance)
             {
                 int pickup = Random.Range(0, gameManager.PickupPrefabs.Length);
-                Instantiate(gameManager.PickupPrefabs[pickup], pos, Quaternion.identity);
+                Instantiate(gameManager.PickupPrefabs[pickup], pos, Quaternion.identity)
+                    .transform.parent = pickupParent.transform;;
             }
         }
 

@@ -41,7 +41,7 @@ namespace Enemies
 
         private void FixedUpdate()
         {
-            // Set layer mask so raycast ignores everything BUT walls
+            // Set layer mask so raycast ignores everything BUT walls and other enemies
             int layerMask = 1 << 6;
             bool hitWall = Physics.Raycast(transform.position, dir, out RaycastHit _, 3f, layerMask);
             
