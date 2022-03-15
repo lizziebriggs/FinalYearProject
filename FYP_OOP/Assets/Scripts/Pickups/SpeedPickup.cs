@@ -11,8 +11,10 @@ namespace Pickups
         private bool boostActive;
         private float timer;
 
-        private void Update()
+        protected override void Update()
         {
+            base.Update();
+            
             if (!boostActive) return;
 
             timer += Time.deltaTime;

@@ -10,8 +10,10 @@ namespace Pickups
         private bool immunityActive;
         private float timer;
 
-        private void Update()
+        protected override void Update()
         {
+            base.Update();
+            
             if (!immunityActive) return;
 
             timer += Time.deltaTime;

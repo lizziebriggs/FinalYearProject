@@ -1,3 +1,4 @@
+using System;
 using Player;
 using UnityEngine;
 
@@ -15,6 +16,11 @@ namespace Pickups
         {
             if (!meshRend) meshRend = GetComponent<MeshRenderer>();
             if (!col) col = GetComponent<Collider>();
+        }
+
+        protected virtual void Update()
+        {
+            transform.Rotate(50*Time.deltaTime, 0, 50*Time.deltaTime);
         }
 
         protected virtual void OnPickUp()
