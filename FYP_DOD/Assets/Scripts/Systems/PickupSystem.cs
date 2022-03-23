@@ -1,6 +1,8 @@
 using Components;
 using Components.Pickups;
 using Unity.Entities;
+using Unity.Mathematics;
+using Unity.Transforms;
 
 namespace Systems
 {
@@ -8,6 +10,8 @@ namespace Systems
     {
         protected override void OnUpdate()
         {
+            var dt = Time.DeltaTime;
+            
             var ecb = World.GetOrCreateSystem<EndSimulationEntityCommandBufferSystem>().CreateCommandBuffer();
             
             Entities
@@ -31,6 +35,14 @@ namespace Systems
                     }
                 }
             }).WithoutBurst().Run();
+
+            Entities
+                .WithAll<IdleRotate>()
+                .ForEach((ref Translation trans, ref Rotation rot) =>
+                {
+                    var rotMove = quaternion.AxisAngle(new float3(1f, 0f, 0f), 3f * dt);
+                    rot.Value = math.mul(rotMove, rot.Value);
+                }).Schedule();
         }
     }
 }
