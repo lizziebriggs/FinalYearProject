@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -58,13 +59,13 @@ namespace Player
             GUI.Box(new Rect(10, 10, 100, 25), "Health: " + health);
         }
 
+        public void Reset()
+        {
+            health = maxHealth;
+        }
+
         private void Update()
         {
-            if (health <= 0)
-            {
-                // End game
-            }
-
             if (fireTimer >= fireRate)
             {
                 if (Input.GetMouseButton(0))

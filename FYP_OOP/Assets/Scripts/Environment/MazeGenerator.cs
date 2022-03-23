@@ -23,9 +23,25 @@ namespace Environment
         [SerializeField] [Range(0, 1)] private float pickupChance;
 
         private int[,] mazeData;
+        private GameObject pickupsObj;
+        private GameObject enemiesObj;
+        private GameObject mazeObj;
 
         private void Start()
         {
+            CreateNewMaze();
+        }
+
+        public void CreateNewMaze()
+        {
+            Destroy(pickupsObj);
+            Destroy(enemiesObj);
+            Destroy(mazeObj);
+            
+            pickupsObj = new GameObject();
+            enemiesObj = new GameObject();
+            mazeObj = new GameObject();
+            
             mazeData = GenerateMazeData();
             GenerateMazeObject();
             
@@ -70,15 +86,12 @@ namespace Environment
             int lMax = mazeData.GetUpperBound(1);
             float halfH = pathHeight * .5f;
 
-            GameObject mazeObj = new GameObject();
             mazeObj.transform.position = Vector3.zero;
             mazeObj.name = "Maze";
             
-            GameObject enemiesObj = new GameObject();
             enemiesObj.transform.position = Vector3.zero;
             enemiesObj.name = "Enemies";
             
-            GameObject pickupsObj = new GameObject();
             pickupsObj.transform.position = Vector3.zero;
             pickupsObj.name = "Pickups";
             

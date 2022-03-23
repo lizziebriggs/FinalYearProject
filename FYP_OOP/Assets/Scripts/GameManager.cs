@@ -1,8 +1,11 @@
+using Environment;
+using Player;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] private GameObject player;
+    [SerializeField] private PlayerController player;
+    [SerializeField] private MazeGenerator mazeGen;
     
     [Header("Prefabs")]
     [SerializeField] private GameObject enemyPrefab;
@@ -27,5 +30,14 @@ public class GameManager : MonoBehaviour
     public void StartGame()
     {
         player.transform.position = new Vector3(startX, 1f, startZ);
+    }
+
+    private void Update()
+    {
+        if (player.Health <= 0)
+        {
+            mazeGen.CreateNewMaze();
+            player.Reset();
+        }
     }
 }

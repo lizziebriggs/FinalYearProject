@@ -152,7 +152,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c52b138dc131e4e4ebc83ad6256a75fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 150547862}
+  player: {fileID: 150547863}
+  mazeGen: {fileID: 946272900}
   enemyPrefab: {fileID: 7710345223482933289, guid: 848a38d26d3ea1345801a8abef5ea245, type: 3}
   pickupPrefabs:
   - {fileID: 773888728361246366, guid: 7123f1679e0159b40a16bf4bb63dc19f, type: 3}
@@ -171,11 +172,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &150547862 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2881795834920351730, guid: e2d328096d033c84088738d09c3443f6, type: 3}
+--- !u!114 &150547863 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2881795834920351731, guid: e2d328096d033c84088738d09c3443f6, type: 3}
   m_PrefabInstance: {fileID: 2881795834781473380}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 165875568df596b46852e0acc4514542, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &150547868 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2881795834920351736, guid: e2d328096d033c84088738d09c3443f6, type: 3}
@@ -452,6 +459,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 2881795834920351731, guid: e2d328096d033c84088738d09c3443f6, type: 3}
+      propertyPath: maxHealth
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 2881795834920351736, guid: e2d328096d033c84088738d09c3443f6, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -496,5 +507,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2881795834920351742, guid: e2d328096d033c84088738d09c3443f6, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 5b04b72d73f095343bcd44071fa4f409, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e2d328096d033c84088738d09c3443f6, type: 3}
