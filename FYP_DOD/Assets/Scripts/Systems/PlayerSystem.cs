@@ -1,6 +1,5 @@
 using Components;
 using Components.Pickups;
-using Mono;
 using Unity.Entities;
 using Unity.Mathematics;
 using Unity.Transforms;
@@ -13,7 +12,6 @@ namespace Systems
         protected override void OnUpdate()
         {
             var ecb = World.GetOrCreateSystem<EndSimulationEntityCommandBufferSystem>().CreateCommandBuffer();
-
             var dt = Time.DeltaTime;
             
             var x = Input.GetAxis("Horizontal");
@@ -39,14 +37,6 @@ namespace Systems
                 }
                 else player.fireTimer += dt;
             }).WithStructuralChanges().Run();
-            
-            // Update health to display in UI
-            Entities
-                .WithAll<Player>()
-                .ForEach((in Health health) =>
-                {
-                    LevelManager.instance.UpdateHealth(health.health);
-                }).WithoutBurst().Run();
 
 
             // If player has pick up speed boost, tick down timer for boost

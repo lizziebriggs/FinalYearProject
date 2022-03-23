@@ -1,4 +1,5 @@
 using Components;
+using Mono;
 using Unity.Entities;
 
 namespace Systems
@@ -8,7 +9,6 @@ namespace Systems
         protected override void OnUpdate()
         {
             var dt = Time.DeltaTime;
-            
             var ecb = World.GetOrCreateSystem<EndSimulationEntityCommandBufferSystem>().CreateCommandBuffer();
             
             Entities
@@ -20,6 +20,15 @@ namespace Systems
                     
                     if (health.health <= 0)
                         ecb.AddComponent<Kill>(e);
+                }).WithoutBurst().Run();
+            
+            
+            // Update health to display in UI
+            Entities
+                .WithAll<Player>()
+                .ForEach((ref Health health) =>
+                {
+                    GameManager.instance.UpdateHealth(health.health);
                 }).WithoutBurst().Run();
         }
     }

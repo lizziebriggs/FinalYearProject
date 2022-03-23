@@ -11,7 +11,6 @@ namespace Systems
         protected override void OnUpdate()
         {
             var dt = Time.DeltaTime;
-            
             var ecb = World.GetOrCreateSystem<EndSimulationEntityCommandBufferSystem>().CreateCommandBuffer();
             
             Entities

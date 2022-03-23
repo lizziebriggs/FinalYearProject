@@ -50,6 +50,11 @@ MonoBehaviour:
   pathHeight: 5
   floorQuad: {fileID: 3398768985063939228, guid: 66f2bbc69bc2fc944bcc1d7282673eb4, type: 3}
   wallQuad: {fileID: 4789796082910873868, guid: c01066376e3d9e14dabd5660e5fe88bc, type: 3}
+  enemyPrefab: {fileID: 1244318201344351239, guid: 3657f0f03030a1749b1427d36ffccaaf, type: 3}
+  enemyChance: 0.15
+  speedPickupPrefab: {fileID: 5030795131559702989, guid: 53b0a1673313e654885d08054f69ec6e, type: 3}
+  immunityPickupPrefab: {fileID: 7722696489733667294, guid: d4c5c848648f0594299a0819b6194008, type: 3}
+  pickupChance: 0.1
   startX: 0
   startY: 0
   endX: 0

@@ -8,6 +8,7 @@ namespace Systems
         protected override void OnUpdate()
         {
             var dt = Time.DeltaTime;
+            var ecb = World.GetOrCreateSystem<EndSimulationEntityCommandBufferSystem>().CreateCommandBuffer();
             
             Entities.ForEach((DynamicBuffer<CollisionBuffer> collision, ref Health health) => {
                 for (int i = 0; i < collision.Length; i++)
@@ -20,7 +21,7 @@ namespace Systems
                 }
             }).Schedule();
             
-            Entities.ForEach((DynamicBuffer<TriggerBuffer> trigger, ref Health health) => {
+            Entities.ForEach((Entity e, DynamicBuffer<TriggerBuffer> trigger, ref Health health) => {
                 for (int i = 0; i < trigger.Length; i++)
                 {
                     if (health.damageTimer <= 0 && !health.isImmune && HasComponent<Damage>(trigger[i].entity))

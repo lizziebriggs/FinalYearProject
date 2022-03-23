@@ -650,7 +650,7 @@ GameObject:
   - component: {fileID: 1399952540}
   - component: {fileID: 1399952539}
   m_Layer: 0
-  m_Name: LevelManager
+  m_Name: GameManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -758,10 +758,6 @@ PrefabInstance:
       propertyPath: followEntity
       value: 
       objectReference: {fileID: 327168262}
-    - target: {fileID: 1218730670763922196, guid: 6f2c364ad8d00664e9fb882b1d22a30e, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 17d51b0e3a7554c4faee489199040c12, type: 2}
     - target: {fileID: 1218730670763922198, guid: 6f2c364ad8d00664e9fb882b1d22a30e, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -809,10 +805,6 @@ PrefabInstance:
     - target: {fileID: 1218730670763922201, guid: 6f2c364ad8d00664e9fb882b1d22a30e, type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 1218730670763922201, guid: 6f2c364ad8d00664e9fb882b1d22a30e, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6f2c364ad8d00664e9fb882b1d22a30e, type: 3}
@@ -871,33 +863,5 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7311966788449509347, guid: 7375aad081821bf42958917c56ea3305, type: 3}
-      propertyPath: width
-      value: 13
-      objectReference: {fileID: 0}
-    - target: {fileID: 7311966788449509347, guid: 7375aad081821bf42958917c56ea3305, type: 3}
-      propertyPath: length
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 7311966788449509347, guid: 7375aad081821bf42958917c56ea3305, type: 3}
-      propertyPath: enemyChance
-      value: 0.15
-      objectReference: {fileID: 0}
-    - target: {fileID: 7311966788449509347, guid: 7375aad081821bf42958917c56ea3305, type: 3}
-      propertyPath: enemyPrefab
-      value: 
-      objectReference: {fileID: 1244318201344351239, guid: 3657f0f03030a1749b1427d36ffccaaf, type: 3}
-    - target: {fileID: 7311966788449509347, guid: 7375aad081821bf42958917c56ea3305, type: 3}
-      propertyPath: pickupChance
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7311966788449509347, guid: 7375aad081821bf42958917c56ea3305, type: 3}
-      propertyPath: speedPickupPrefab
-      value: 
-      objectReference: {fileID: 5030795131559702989, guid: 53b0a1673313e654885d08054f69ec6e, type: 3}
-    - target: {fileID: 7311966788449509347, guid: 7375aad081821bf42958917c56ea3305, type: 3}
-      propertyPath: immunityPickupPrefab
-      value: 
-      objectReference: {fileID: 7722696489733667294, guid: d4c5c848648f0594299a0819b6194008, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7375aad081821bf42958917c56ea3305, type: 3}

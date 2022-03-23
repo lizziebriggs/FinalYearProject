@@ -2,9 +2,9 @@ using UnityEngine;
 
 namespace Mono
 {
-    public class LevelManager : MonoBehaviour
+    public class GameManager : MonoBehaviour
     {
-        public static LevelManager instance;
+        public static GameManager instance;
 
         private int health;
 
@@ -17,7 +17,7 @@ namespace Mono
         {
             health = value;
         }
-        
+
         private void OnGUI()
         {
             GUI.Box(new Rect(10, 10, 100, 25), "Health: " + health);
