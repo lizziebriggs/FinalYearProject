@@ -225,5 +225,5 @@ MonoBehaviour:
   rb: {fileID: 2881795834920351740}
   speed: 5
   bullet: {fileID: 4932551648066692466, guid: 4100ef1cea5b46043afc447d4fa52d53, type: 3}
-  fireRate: 1
+  fireRate: 0.5
   poolSize: 20
