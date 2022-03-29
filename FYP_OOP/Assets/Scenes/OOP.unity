@@ -301,7 +301,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   toFollow: {fileID: 150547868}
-  offset: {x: 0, y: 25, z: 0}
+  offset: {x: 0, y: 16, z: 0}
   smoothing: 1
 --- !u!1 &946272899
 GameObject:
@@ -474,7 +474,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2881795834920351736, guid: e2d328096d033c84088738d09c3443f6, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1.55
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2881795834920351736, guid: e2d328096d033c84088738d09c3443f6, type: 3}
       propertyPath: m_LocalRotation.w

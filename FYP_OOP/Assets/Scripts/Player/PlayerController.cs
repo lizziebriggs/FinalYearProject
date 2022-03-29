@@ -7,6 +7,8 @@ namespace Player
     [RequireComponent(typeof(Rigidbody))]
     public class PlayerController : MonoBehaviour
     {
+        [SerializeField] private Animator anim;
+        
         [Header("Settings")]
         [SerializeField] private float maxHealth;
         private float health;
@@ -88,6 +90,9 @@ namespace Player
             transform.Translate(movement * (speed * Time.deltaTime), Space.World);
             if (movement != Vector3.zero)
                 transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(movement), 0.15F);
+            
+            var animSpeed = !movement.Equals(Vector3.zero) ? 1 : 0;
+            anim.SetFloat("Speed", animSpeed * 3f);
         }
 
         private void Fire()
