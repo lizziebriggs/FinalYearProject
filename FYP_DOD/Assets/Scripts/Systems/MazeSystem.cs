@@ -27,11 +27,17 @@ namespace Systems
             {
                 for (int j = 0; j <= lMax; j++)
                 {
-                    if (mazeData[i, j] == 1) continue;
-
                     float3 floorPos = new float3(j * pathWidth, 0, i * pathWidth);
 
-                    Entity floor = EntityManager.Instantiate(maze.floorQuad);
+                    if (mazeData[i, j] == 1)
+                    {
+                        Entity water = EntityManager.Instantiate(maze.water);
+                        EntityManager.SetComponentData(water, new Translation() {Value = floorPos});
+                        
+                        continue;
+                    }
+
+                    Entity floor = EntityManager.Instantiate(maze.floor);
                     EntityManager.SetComponentData(floor, new Translation() {Value = floorPos});
 
                     float chance = Random.Range(0f, 1f);
@@ -56,7 +62,7 @@ namespace Systems
                     // Face forward
                     if (i - 1 < 0 || mazeData[i-1, j] == 1)
                     {
-                        Entity wall = EntityManager.Instantiate(maze.wallQuad);
+                        Entity wall = EntityManager.Instantiate(maze.wall);
                         EntityManager.SetComponentData(wall, new Translation() {Value = new float3(j * pathWidth, halfH, (i-.5f) * pathWidth)});
                         EntityManager.SetComponentData(wall, new Rotation(){Value = quaternion.EulerZXY(0, math.PI / 180 * 180, 0)});
                     }
@@ -64,7 +70,7 @@ namespace Systems
                     // Face left
                     if (j + 1 > lMax || mazeData[i, j+1] == 1)
                     {
-                        Entity wall = EntityManager.Instantiate(maze.wallQuad);
+                        Entity wall = EntityManager.Instantiate(maze.wall);
                         EntityManager.SetComponentData(wall, new Translation() {Value = new float3((j+.5f) * pathWidth, halfH, i * pathWidth)});
                         EntityManager.SetComponentData(wall, new Rotation(){Value = quaternion.EulerZXY(0, math.PI / 180 * 90, 0)});
                     }
@@ -72,7 +78,7 @@ namespace Systems
                     // Face right
                     if (j - 1 < 0 || mazeData[i, j-1] == 1)
                     {
-                        Entity wall = EntityManager.Instantiate(maze.wallQuad);
+                        Entity wall = EntityManager.Instantiate(maze.wall);
                         EntityManager.SetComponentData(wall, new Translation() {Value = new float3((j-.5f) * pathWidth, halfH, i * pathWidth)});
                         EntityManager.SetComponentData(wall, new Rotation(){Value = quaternion.EulerZXY(0, math.PI / 180 * 270, 0)});
                     }
@@ -80,7 +86,7 @@ namespace Systems
                     // Face back
                     if (i + 1 > wMax || mazeData[i+1, j] == 1)
                     {
-                        Entity wall = EntityManager.Instantiate(maze.wallQuad);
+                        Entity wall = EntityManager.Instantiate(maze.wall);
                         EntityManager.SetComponentData(wall, new Translation() {Value = new float3(j * pathWidth, halfH, (i+.5f) * pathWidth)});
                         EntityManager.SetComponentData(wall, new Rotation(){Value = quaternion.EulerZXY(0, math.PI / 180 * 0, 0)});
                     }

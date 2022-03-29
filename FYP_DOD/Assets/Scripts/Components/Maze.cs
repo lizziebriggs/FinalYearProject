@@ -1,4 +1,3 @@
-using Unity.Collections;
 using Unity.Entities;
 
 namespace Components
@@ -8,7 +7,7 @@ namespace Components
     {
         public int width, length;
         public float pathWidth, pathHeight;
-        public Entity floorQuad, wallQuad;
+        public Entity floor, wall, water;
 
         public Entity enemyPrefab;
         public float enemyChance;

@@ -226,7 +226,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0.5137255, g: 0.7607843, b: 0.8745098, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -339,6 +339,7 @@ MonoBehaviour:
   pathHeight: 5
   floor: {fileID: 5304571721866003724, guid: 9ed9b765f4b436d48abe918ef37f5f66, type: 3}
   wall: {fileID: 2473583228400954158, guid: 682a1596267b9934e8de45ed4ea01a80, type: 3}
+  water: {fileID: 6831802731498629993, guid: ff1cc1e2dfda26743b58d1272d6c199d, type: 3}
   enemyChance: 0.13
   pickupChance: 0.155
 --- !u!4 &946272901

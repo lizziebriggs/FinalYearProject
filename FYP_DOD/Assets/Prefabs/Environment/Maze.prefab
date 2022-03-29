@@ -48,8 +48,9 @@ MonoBehaviour:
   length: 15
   pathWidth: 5
   pathHeight: 5
-  floorQuad: {fileID: 3398768985063939228, guid: 66f2bbc69bc2fc944bcc1d7282673eb4, type: 3}
-  wallQuad: {fileID: 4789796082910873868, guid: c01066376e3d9e14dabd5660e5fe88bc, type: 3}
+  floor: {fileID: 3398768985063939228, guid: 66f2bbc69bc2fc944bcc1d7282673eb4, type: 3}
+  wall: {fileID: 4789796082910873868, guid: c01066376e3d9e14dabd5660e5fe88bc, type: 3}
+  water: {fileID: 805246870315298610, guid: 25bfbbdc16b3d3d4580ccbf89b12329a, type: 3}
   enemyPrefab: {fileID: 1244318201344351239, guid: 3657f0f03030a1749b1427d36ffccaaf, type: 3}
   enemyChance: 0.15
   speedPickupPrefab: {fileID: 5030795131559702989, guid: 53b0a1673313e654885d08054f69ec6e, type: 3}

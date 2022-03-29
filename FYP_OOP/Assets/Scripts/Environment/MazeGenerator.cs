@@ -17,6 +17,7 @@ namespace Environment
         [SerializeField] private float pathHeight;
         [SerializeField] private GameObject floor;
         [SerializeField] private GameObject wall;
+        [SerializeField] private GameObject water;
 
         [Header("Spawns")]
         [SerializeField] [Range(0, 1)] private float enemyChance;
@@ -99,9 +100,16 @@ namespace Environment
             {
                 for (int j = 0; j <= lMax; j++)
                 {
-                    if (mazeData[i, j] == 1) continue;
-
                     Vector3 floorPos = new Vector3(j * pathWidth, 0, i * pathWidth);
+                    
+                    if (mazeData[i, j] == 1)
+                    {
+                        Instantiate(water,
+                                floorPos, Quaternion.Euler(0, 0, 0))
+                            .transform.parent = mazeObj.transform;
+                        
+                        continue;
+                    }
 
                     Instantiate(floor,
                         floorPos, Quaternion.Euler(90, 0, 0))

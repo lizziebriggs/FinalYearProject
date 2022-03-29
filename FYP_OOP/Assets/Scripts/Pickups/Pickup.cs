@@ -4,7 +4,6 @@ using UnityEngine;
 
 namespace Pickups
 {
-    [RequireComponent(typeof(Material), typeof(MeshRenderer), typeof(Collider))]
     public class Pickup : MonoBehaviour
     {
         [SerializeField] private MeshRenderer meshRend;
