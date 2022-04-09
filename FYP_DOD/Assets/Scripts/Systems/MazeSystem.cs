@@ -1,4 +1,5 @@
 using Components;
+using Mono;
 using Unity.Entities;
 using Unity.Mathematics;
 using Unity.Transforms;
@@ -16,6 +17,11 @@ namespace Systems
             int length = maze.length;
             float pathWidth = maze.pathWidth;
             float pathHeight = maze.pathHeight;
+
+            GameManager.instance.Width = width;
+            GameManager.instance.Length = length;
+            GameManager.instance.EnemyChance = maze.enemyChance;
+            GameManager.instance.PickupChance = maze.pickupChance;
                 
             int[,] mazeData = GenerateMazeData(width, length);
             

@@ -301,7 +301,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   toFollow: {fileID: 150547868}
-  offset: {x: 0, y: 16, z: 0}
+  offset: {x: 0, y: 30, z: 0}
   smoothing: 1
 --- !u!1 &946272899
 GameObject:

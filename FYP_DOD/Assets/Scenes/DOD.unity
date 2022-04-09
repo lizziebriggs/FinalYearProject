@@ -221,7 +221,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   offset:
     x: 0
-    y: 16
+    y: 30
     z: 0
 --- !u!1 &911794042
 GameObject:

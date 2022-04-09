@@ -22,6 +22,11 @@ namespace Environment
         [Header("Spawns")]
         [SerializeField] [Range(0, 1)] private float enemyChance;
         [SerializeField] [Range(0, 1)] private float pickupChance;
+        
+        public int Width => width;
+        public int Length => length;
+        public float EnemyChance => enemyChance;
+        public float PickupChance => pickupChance;
 
         private int[,] mazeData;
         private GameObject pickupsObj;
