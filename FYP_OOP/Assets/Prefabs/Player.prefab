@@ -157,7 +157,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 80
+  m_Constraints: 84
   m_CollisionDetection: 0
 --- !u!114 &2881795834920351731
 MonoBehaviour:
@@ -172,7 +172,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   anim: {fileID: 3489831680727508954}
-  modelTrans: {fileID: 7389971276746931616}
   maxHealth: 100
   rb: {fileID: 2881795834920351740}
   speed: 7

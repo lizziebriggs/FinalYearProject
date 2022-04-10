@@ -613,5 +613,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7311966788449509347, guid: 7375aad081821bf42958917c56ea3305, type: 3}
+      propertyPath: width
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 7311966788449509347, guid: 7375aad081821bf42958917c56ea3305, type: 3}
+      propertyPath: length
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 7311966788449509347, guid: 7375aad081821bf42958917c56ea3305, type: 3}
+      propertyPath: enemyChance
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7311966788449509347, guid: 7375aad081821bf42958917c56ea3305, type: 3}
+      propertyPath: pickupChance
+      value: 0.7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7375aad081821bf42958917c56ea3305, type: 3}
