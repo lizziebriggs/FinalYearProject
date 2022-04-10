@@ -333,15 +333,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 17690746}
-  width: 113
-  length: 115
+  width: 13
+  length: 15
   pathWidth: 5
   pathHeight: 5
   floor: {fileID: 5304571721866003724, guid: 9ed9b765f4b436d48abe918ef37f5f66, type: 3}
   wall: {fileID: 2473583228400954158, guid: 682a1596267b9934e8de45ed4ea01a80, type: 3}
   water: {fileID: 6831802731498629993, guid: ff1cc1e2dfda26743b58d1272d6c199d, type: 3}
-  enemyChance: 0.7
-  pickupChance: 0.7
+  enemyChance: 0
+  pickupChance: 0
 --- !u!4 &946272901
 Transform:
   m_ObjectHideFlags: 0
