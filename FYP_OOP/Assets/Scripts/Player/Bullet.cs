@@ -17,20 +17,20 @@ namespace Player
 
             timer += Time.deltaTime;
             if (timer >= lifeSpan)
-                gameObject.SetActive(false);
+                Destroy(gameObject);
         }
 
         private void OnCollisionEnter(Collision other)
         {
             if (other.gameObject.CompareTag("Wall"))
-                gameObject.SetActive(false);
+                Destroy(gameObject);
             
             var enemy = other.gameObject.GetComponent<EnemyBase>();
 
             if (enemy)
             {
                 enemy.Health -= damage;
-                gameObject.SetActive(false);
+                Destroy(gameObject);
             }
         }
     }

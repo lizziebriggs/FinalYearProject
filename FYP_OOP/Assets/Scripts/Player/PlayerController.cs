@@ -1,5 +1,3 @@
-using System;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Player
@@ -34,10 +32,7 @@ namespace Player
         [Header("Bullets")]
         [SerializeField] private GameObject bullet;
         [SerializeField] private float fireRate;
-        [SerializeField] private int poolSize;
         private float fireTimer;
-        private List<GameObject> bulletPool = new List<GameObject>();
-        private int nextBullet;
 
         
         private void Start()
@@ -45,15 +40,6 @@ namespace Player
             if (!rb) rb = GetComponent<Rigidbody>();
 
             health = maxHealth;
-
-            for (int i = 0; i < poolSize; i++)
-            {
-                var newBullet = Instantiate(bullet, transform.position, Quaternion.identity);
-                newBullet.SetActive(false);
-                bulletPool.Add(newBullet);
-            }
-
-            nextBullet = 0;
         }
 
         private void OnGUI()
@@ -97,11 +83,7 @@ namespace Player
 
         private void Fire()
         {
-            bulletPool[nextBullet].transform.position = transform.position;
-            bulletPool[nextBullet].transform.rotation = transform.rotation;
-            bulletPool[nextBullet].SetActive(true);
-
-            nextBullet = nextBullet + 1 == poolSize ? 0 : ++nextBullet;
+            Instantiate(bullet, transform.position, transform.rotation);
         }
     }
 }
