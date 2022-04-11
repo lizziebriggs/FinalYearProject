@@ -9,7 +9,7 @@ using Vector3 = UnityEngine.Vector3;
 namespace Enemies
 {
     [RequireComponent(typeof(Rigidbody))]
-    public class EnemyBase : MonoBehaviour
+    public class EnemyController : MonoBehaviour
     {
         [Header("Info")]
         [SerializeField] private float health;
@@ -22,9 +22,9 @@ namespace Enemies
         }
 
         [Header("Movement")]
-        [SerializeField] protected Rigidbody rb;
-        [SerializeField] protected float speed;
-        protected Vector3 dir;
+        [SerializeField] private Rigidbody rb;
+        [SerializeField] private float speed;
+        private Vector3 dir;
 
         private void Start()
         {
@@ -43,7 +43,7 @@ namespace Enemies
         {
             // Set layer mask so raycast ignores everything BUT walls and other enemies
             int layerMask = 1 << 6;
-            bool hitWall = Physics.Raycast(transform.position, dir, out RaycastHit _, 3f, layerMask);
+            bool hitWall = Physics.Raycast(transform.position, dir, out RaycastHit _, 2.5f, layerMask);
             
             if (hitWall)
             {

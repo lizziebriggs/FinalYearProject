@@ -25,7 +25,7 @@ namespace Player
             if (other.gameObject.CompareTag("Wall"))
                 Destroy(gameObject);
             
-            var enemy = other.gameObject.GetComponent<EnemyBase>();
+            var enemy = other.gameObject.GetComponent<EnemyController>();
 
             if (enemy)
             {

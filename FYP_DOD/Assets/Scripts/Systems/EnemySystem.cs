@@ -63,6 +63,8 @@ namespace Systems
                 {
                     Start = pos,
                     End = pos + dir * 3f,
+                    // Collision filter sets enemies to belong to enemies,
+                    // and collides with walls
                     Filter = new CollisionFilter()
                     {
                         GroupIndex = 0,
