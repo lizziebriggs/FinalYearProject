@@ -17,6 +17,7 @@ namespace Systems
                 Entity entityA = collisionEvent.EntityA;
                 Entity entityB = collisionEvent.EntityB;
 
+                // If collision occurs, add other to entity to collision buffer
                 if (!entityA.Equals(Entity.Null))
                     collisions[entityA].Add(new CollisionBuffer {entity = entityB});
                 if (!entityB.Equals(Entity.Null))
@@ -33,6 +34,7 @@ namespace Systems
                 Entity entityA = triggerEvent.EntityA;
                 Entity entityB = triggerEvent.EntityB;
 
+                // If collision occurs, add other to entity to trigger buffer
                 if (!entityA.Equals(Entity.Null))
                     triggers[entityA].Add(new TriggerBuffer {entity = entityB});
                 if (!entityB.Equals(Entity.Null))
@@ -52,6 +54,7 @@ namespace Systems
                 collisions.Clear();
             }).Run();
 
+            // Run collision job
             var collisionJob = new CollisionJob
             {
                 collisions = GetBufferFromEntity<CollisionBuffer>()
@@ -66,6 +69,7 @@ namespace Systems
                 triggers.Clear();
             }).Run();
 
+            // Run trigger job
             var triggerJob = new TriggerJob
             {
                 triggers = GetBufferFromEntity<TriggerBuffer>()

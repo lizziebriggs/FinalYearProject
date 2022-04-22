@@ -39,6 +39,7 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
+        // Calculate average cumulative frame rate
         frameDelta += (Time.deltaTime - frameDelta) * 0.1f;
         displayVal = 1f / frameDelta;
         

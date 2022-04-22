@@ -17,6 +17,7 @@ namespace Systems
             var x = Input.GetAxis("Horizontal");
             var z = Input.GetAxis("Vertical");
 
+            // Direction based on user input
             Entities
                 .WithAll<Player>()
                 .ForEach((ref Movable move, ref Translation trans, in Rotation rot) =>
@@ -26,6 +27,7 @@ namespace Systems
 
             var fire = Input.GetMouseButtonDown(0);
 
+            // Fire bullet when user pressed left mouse button
             Entities.ForEach((ref Player player, in Translation trans, in Rotation rot) =>
             {
                 if (fire && player.fireTimer >= player.fireRate)

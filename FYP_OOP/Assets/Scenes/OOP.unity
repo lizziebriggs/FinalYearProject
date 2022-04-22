@@ -156,8 +156,8 @@ MonoBehaviour:
   mazeGen: {fileID: 946272900}
   enemyPrefab: {fileID: 7710345223482933289, guid: 848a38d26d3ea1345801a8abef5ea245, type: 3}
   pickupPrefabs:
-  - {fileID: 773888728361246366, guid: 7123f1679e0159b40a16bf4bb63dc19f, type: 3}
-  - {fileID: 4961543846838736659, guid: 1d4239fa2c980da43a69e7a439342183, type: 3}
+  - {fileID: 4961543846838736659, guid: 7123f1679e0159b40a16bf4bb63dc19f, type: 3}
+  - {fileID: 773888728361246366, guid: 1d4239fa2c980da43a69e7a439342183, type: 3}
 --- !u!4 &17690747
 Transform:
   m_ObjectHideFlags: 0
@@ -333,15 +333,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 17690746}
-  width: 13
-  length: 15
+  width: 53
+  length: 55
   pathWidth: 5
   pathHeight: 5
   floor: {fileID: 5304571721866003724, guid: 9ed9b765f4b436d48abe918ef37f5f66, type: 3}
   wall: {fileID: 2473583228400954158, guid: 682a1596267b9934e8de45ed4ea01a80, type: 3}
   water: {fileID: 6831802731498629993, guid: ff1cc1e2dfda26743b58d1272d6c199d, type: 3}
-  enemyChance: 0
-  pickupChance: 0
+  enemyChance: 0.3
+  pickupChance: 0.3
 --- !u!4 &946272901
 Transform:
   m_ObjectHideFlags: 0

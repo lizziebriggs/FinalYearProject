@@ -12,7 +12,6 @@ namespace Mono
 
         public Entity EntityToFollow
         {
-            get => entityToFollow;
             set => entityToFollow = value;
         }
 
@@ -27,6 +26,7 @@ namespace Mono
         {
             if (entityManager == null) return;
 
+            // Match position of the camera to the player's
             Translation entityPos = entityManager.GetComponentData<Translation>(entityToFollow);
             transform.position = entityPos.Value + offset;
         }

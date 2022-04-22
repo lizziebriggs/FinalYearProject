@@ -19,6 +19,7 @@ namespace Pickups
 
             timer += Time.deltaTime;
 
+            // Remove speed boost effect once timer ends
             if (timer >= duration)
             {
                 player.Speed /= speedMultiplier;

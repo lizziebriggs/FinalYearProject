@@ -73,10 +73,12 @@ namespace Player
             Vector3 movement = new Vector3(xMove, 0, zMove);
             movement.Normalize();
             
+            // Move player based on user input
             transform.Translate(movement * (speed * Time.deltaTime), Space.World);
             if (movement != Vector3.zero)
                 transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(movement), 0.15F);
             
+            // Match animation to player's movement
             var animSpeed = !movement.Equals(Vector3.zero) ? 1 : 0;
             anim.SetFloat("Speed", animSpeed * 3f);
         }

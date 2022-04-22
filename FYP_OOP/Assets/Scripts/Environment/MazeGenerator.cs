@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.Assertions.Must;
 using Quaternion = UnityEngine.Quaternion;
 using Random = UnityEngine.Random;
 using Vector3 = UnityEngine.Vector3;
@@ -107,6 +106,7 @@ namespace Environment
                 {
                     Vector3 floorPos = new Vector3(j * pathWidth, 0, i * pathWidth);
                     
+                    // Place empty tile
                     if (mazeData[i, j] == 1)
                     {
                         Instantiate(water,
@@ -116,12 +116,12 @@ namespace Environment
                         continue;
                     }
 
+                    // Place floor
                     Instantiate(floor,
                         floorPos, Quaternion.Euler(90, 0, 0))
                         .transform.parent = mazeObj.transform;
                     
-                    SpawnObject(new Vector3(floorPos.x, floorPos.y + 1f, floorPos.z),
-                        enemiesObj, pickupsObj);
+                    SpawnObject(new Vector3(floorPos.x, floorPos.y + 1f, floorPos.z), enemiesObj, pickupsObj);
                     
                     // Face forward
                     if (i - 1 < 0 || mazeData[i-1, j] == 1)

@@ -18,6 +18,7 @@ namespace Player
 
         private void LateUpdate()
         {
+            // Allows rotating around the player
             Quaternion turnAngle = Quaternion.AngleAxis(Input.GetAxis("Mouse X") * rotateSpeed, Vector3.up);
             posOffset = turnAngle * posOffset;
 

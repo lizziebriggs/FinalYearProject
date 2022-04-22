@@ -13,6 +13,7 @@ namespace Player
         {
             if (!toFollow) return;
             
+            // Match position to player's position
             var newPos = toFollow.position + offset;
             transform.position = Vector3.Slerp(transform.position, newPos, smoothing);
             transform.LookAt(toFollow);

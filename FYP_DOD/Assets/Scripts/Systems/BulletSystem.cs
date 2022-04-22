@@ -10,9 +10,9 @@ namespace Systems
         protected override void OnUpdate()
         {
             var dt = Time.DeltaTime;
-            
             var ecb = World.GetOrCreateSystem<EndSimulationEntityCommandBufferSystem>().CreateCommandBuffer();
             
+            // Move bullet entities in a straight direction from player once shot
             Entities
                 .WithAll<Bullet>()
                 .ForEach((ref Movable move, ref Translation trans, in Rotation rot) =>
@@ -20,6 +20,7 @@ namespace Systems
                     move.direction = math.forward(rot.Value);
                 }).Schedule();
             
+            // Tick bullet life span
             Entities
                 .WithAll<Bullet>()
                 .ForEach((Entity e, ref Bullet bullet) =>

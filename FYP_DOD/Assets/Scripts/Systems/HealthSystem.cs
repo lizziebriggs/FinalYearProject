@@ -15,6 +15,8 @@ namespace Systems
                 .WithAll<Health>()
                 .ForEach((Entity e, ref Health health) =>
                 {
+                    // Count damage delay to stop damage being applied for multiple
+                    // consecutive updates
                     if (health.damageTimer > 0)
                         health.damageTimer -= dt;
                     

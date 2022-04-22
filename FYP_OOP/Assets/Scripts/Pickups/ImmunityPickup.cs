@@ -18,6 +18,7 @@ namespace Pickups
 
             timer += Time.deltaTime;
 
+            // Remove immunity effect once timer ends
             if (timer >= duration)
             {
                 gameObject.SetActive(false);

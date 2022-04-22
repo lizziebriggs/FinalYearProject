@@ -18,6 +18,7 @@ namespace Systems
             float pathWidth = maze.pathWidth;
             float pathHeight = maze.pathHeight;
 
+            // Pass information to game manager to record info for tests
             GameManager.instance.Width = width;
             GameManager.instance.Length = length;
             GameManager.instance.EnemyChance = maze.enemyChance;
@@ -35,6 +36,7 @@ namespace Systems
                 {
                     float3 floorPos = new float3(j * pathWidth, 0, i * pathWidth);
 
+                    // Spawn empty tile
                     if (mazeData[i, j] == 1)
                     {
                         Entity water = EntityManager.Instantiate(maze.water);
@@ -43,11 +45,13 @@ namespace Systems
                         continue;
                     }
 
+                    // Floor tile
                     Entity floor = EntityManager.Instantiate(maze.floor);
                     EntityManager.SetComponentData(floor, new Translation() {Value = floorPos});
 
                     float chance = Random.Range(0f, 1f);
 
+                    // Check whether to spawn enemy on this tile
                     if (chance <= maze.enemyChance)
                     {
                         Entity enemy = EntityManager.Instantiate(maze.enemyPrefab);
@@ -55,6 +59,7 @@ namespace Systems
                             new Translation() {Value = new float3(floorPos.x, floorPos.y + 1f, floorPos.z)});
                     }
 
+                    // Check whether to spawn pickup on this tile
                     if (chance <= maze.pickupChance)
                     {
                         int type = Random.Range(0, 2);

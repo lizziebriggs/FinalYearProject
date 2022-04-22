@@ -19,6 +19,7 @@ namespace Systems
             {
                 for (int i = 0; i < trigger.Length; i++)
                 {
+                    // Apply speed boost effect
                     if (HasComponent<SpeedPickup>(trigger[i].entity))
                     {
                         move.speed *= GetComponent<SpeedPickup>(trigger[i].entity).speedMultiplier;
@@ -26,6 +27,7 @@ namespace Systems
                         ecb.DestroyEntity(trigger[i].entity);
                     }
                     
+                    // Apply immunity effect
                     if (HasComponent<ImmunityPickup>(trigger[i].entity))
                     {
                         health.isImmune = true;

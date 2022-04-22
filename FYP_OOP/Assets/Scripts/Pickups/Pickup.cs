@@ -24,6 +24,7 @@ namespace Pickups
 
         protected virtual void OnPickUp()
         {
+            // Hide pickup from the scene whilst effect is active
             meshRend.enabled = false;
             col.enabled = false;
         }

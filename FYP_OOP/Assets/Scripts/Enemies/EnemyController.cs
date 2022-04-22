@@ -1,6 +1,4 @@
-using System;
 using System.Collections.Generic;
-using System.Security.Cryptography;
 using Player;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -49,6 +47,8 @@ namespace Enemies
             {
                 var validDir = new List<Vector3>();
                 
+                // Cast raycast in each direction from entity and add to list of valid
+                // directions if it does not hit a wall
                 if(!CheckRay(Vector3.back))
                     validDir.Add(Vector3.back);
                 if(!CheckRay(Vector3.forward))
@@ -58,6 +58,7 @@ namespace Enemies
                 if(!CheckRay(Vector3.right))
                     validDir.Add(Vector3.right);
                 
+                // If there are no valid directions, reverse the enemy movement
                 if (validDir.Count == 0)
                     dir = -dir;
                 else
@@ -69,6 +70,8 @@ namespace Enemies
 
         private bool CheckRay(Vector3 dirToCheck)
         {
+            // Returns true if the direction being checked is where the enemy just came from
+            // or the raycast hit a wall or another enemy
             return dirToCheck == -dir
                    || Physics.Raycast(transform.position, dirToCheck, out RaycastHit _, 3f);
         }

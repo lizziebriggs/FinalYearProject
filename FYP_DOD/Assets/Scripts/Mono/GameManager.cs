@@ -32,6 +32,7 @@ namespace Mono
 
         private void Update()
         {
+            // Calculate average cumulative framerate
             frameDelta += (Time.deltaTime - frameDelta) * 0.1f;
             displayVal = 1f / frameDelta;
         }

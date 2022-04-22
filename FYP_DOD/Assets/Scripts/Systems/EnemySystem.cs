@@ -30,6 +30,8 @@ namespace Systems
                 {
                     var validDir = new NativeList<float3>(Allocator.Temp);
                     
+                    // Cast raycast in each direction from entity and add to list of valid
+                    // directions if it does not hit a wall
                     if (!raycaster.CheckRay(trans.Value, new float3(0, 0, -1), mov.direction))
                         validDir.Add(new float3(0, 0, -1));
                     if (!raycaster.CheckRay(trans.Value, new float3(0, 0, 1), mov.direction))
@@ -39,6 +41,7 @@ namespace Systems
                     if (!raycaster.CheckRay(trans.Value, new float3(1, 0, 0), mov.direction))
                         validDir.Add(new float3(1, 0, 0));
 
+                    // If there are no valid directions, reverse the enemy movement
                     if (validDir.Length == 0)
                         mov.direction = -mov.direction;
                     else
@@ -56,6 +59,7 @@ namespace Systems
 
             public bool CheckRay(float3 pos, float3 dir, float3 currentDir)
             {
+                // Do not include direction the entity just came from
                 if (dir.Equals(-currentDir))
                     return true;
 

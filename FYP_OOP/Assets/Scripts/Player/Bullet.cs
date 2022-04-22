@@ -15,6 +15,7 @@ namespace Player
         {
             transform.position += transform.forward * (Time.deltaTime * speed);
 
+            // Destroy bullet after life span runs out
             timer += Time.deltaTime;
             if (timer >= lifeSpan)
                 Destroy(gameObject);
