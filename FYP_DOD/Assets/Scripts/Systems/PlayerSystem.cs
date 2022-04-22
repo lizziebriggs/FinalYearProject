@@ -17,7 +17,7 @@ namespace Systems
             var x = Input.GetAxis("Horizontal");
             var z = Input.GetAxis("Vertical");
 
-            // Direction based on user input
+            // Set direction based on user input
             Entities
                 .WithAll<Player>()
                 .ForEach((ref Movable move, ref Translation trans, in Rotation rot) =>

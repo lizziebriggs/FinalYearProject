@@ -62,6 +62,7 @@ namespace Systems
                     // Check whether to spawn pickup on this tile
                     if (chance <= maze.pickupChance)
                     {
+                        // Choose random pickup type
                         int type = Random.Range(0, 2);
                         Entity pickup = EntityManager.Instantiate(
                             (type == 0 ? maze.speedPickupPrefab : maze.immunityPickupPrefab));
