@@ -58,7 +58,7 @@ namespace Player
             {
                 if (Input.GetMouseButton(0))
                 {
-                    Fire();
+                    Instantiate(bullet, transform.position, transform.rotation);
                     fireTimer = 0;
                 }
             }
@@ -81,11 +81,6 @@ namespace Player
             // Match animation to player's movement
             var animSpeed = !movement.Equals(Vector3.zero) ? 1 : 0;
             anim.SetFloat("Speed", animSpeed * 3f);
-        }
-
-        private void Fire()
-        {
-            Instantiate(bullet, transform.position, transform.rotation);
         }
     }
 }
