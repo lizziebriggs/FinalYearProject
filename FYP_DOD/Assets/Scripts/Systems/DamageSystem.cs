@@ -33,6 +33,15 @@ namespace Systems
                     }
                 }
             }).Schedule();
+            
+            // Destroy bullets if they collide with wall
+            Entities.ForEach((Entity e, DynamicBuffer<CollisionBuffer> collision, in Bullet bullet) => {
+                for (int i = 0; i < collision.Length; i++)
+                {
+                    if (HasComponent<Wall>(collision[i].entity))
+                        ecb.DestroyEntity(e);
+                }
+            }).Schedule();
         }
     }
 }

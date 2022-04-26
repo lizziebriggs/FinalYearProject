@@ -35,6 +35,9 @@ namespace Mono
             // Calculate average cumulative framerate
             frameDelta += (Time.deltaTime - frameDelta) * 0.1f;
             displayVal = 1f / frameDelta;
+            
+            if (Input.GetKey(KeyCode.LeftShift) && Input.GetKey(KeyCode.Escape))
+                Application.Quit();
         }
 
         private void OnGUI()

@@ -300,9 +300,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86658ec5860b08f45968a9b26b051e23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mainCamera: {fileID: 673550328}
   toFollow: {fileID: 150547868}
   offset: {x: 0, y: 30, z: 0}
-  smoothing: 1
+  enableZoom: 1
+  zoomSpeed: 50
+  zoomMin: 60
+  zoomMax: 170
 --- !u!1 &946272899
 GameObject:
   m_ObjectHideFlags: 0

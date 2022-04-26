@@ -4,5 +4,20 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 0
+    path: Assets/Scenes/DOD.unity
+    guid: f55a4529ee2c2cc4fbcb31b1dec1865b
+  - enabled: 0
+    path: Assets/Scenes/DOD_SmallMap.unity
+    guid: b3210bb90c5ad3e4f96dbafc89b8c978
+  - enabled: 0
+    path: Assets/Scenes/DOD_MediumMap.unity
+    guid: c7801de74f81f2848b6512445fc98555
+  - enabled: 0
+    path: Assets/Scenes/DOD_LargeMap.unity
+    guid: bf3bb78b0cf1f8744a02ec51881817b2
+  - enabled: 1
+    path: Assets/Scenes/DOD_MassiveMap.unity
+    guid: f4acac518c81659458028fdff1fae787
   m_configObjects: {}

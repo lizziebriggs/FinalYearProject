@@ -2,6 +2,7 @@ using System.IO;
 using Environment;
 using Player;
 using UnityEngine;
+using UnityEngine.XR;
 
 public class GameManager : MonoBehaviour
 {
@@ -34,7 +35,7 @@ public class GameManager : MonoBehaviour
 
     public void StartGame()
     {
-        player.transform.position = new Vector3(startX, 1f, startZ);
+        player.transform.position = new Vector3(startX, .6f, startZ);
     }
 
     private void Update()
@@ -48,6 +49,9 @@ public class GameManager : MonoBehaviour
             mazeGen.CreateNewMaze();
             player.Reset();
         }
+
+        if (Input.GetKey(KeyCode.LeftShift) && Input.GetKey(KeyCode.Escape))
+            Application.Quit();
     }
 
     private void OnGUI()

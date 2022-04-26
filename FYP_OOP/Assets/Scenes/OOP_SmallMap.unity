@@ -300,9 +300,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86658ec5860b08f45968a9b26b051e23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mainCamera: {fileID: 673550328}
   toFollow: {fileID: 150547868}
   offset: {x: 0, y: 30, z: 0}
-  smoothing: 1
+  enableZoom: 1
+  zoomSpeed: 50
 --- !u!1 &946272899
 GameObject:
   m_ObjectHideFlags: 0
@@ -333,8 +335,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 17690746}
-  width: 53
-  length: 55
+  width: 13
+  length: 15
   pathWidth: 5
   pathHeight: 5
   floor: {fileID: 5304571721866003724, guid: 9ed9b765f4b436d48abe918ef37f5f66, type: 3}
